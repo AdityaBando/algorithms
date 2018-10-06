@@ -65,11 +65,11 @@ push(s,14);push(s,15);
 std::cout << "stack now: " << '\n';
 printstack(s);
 
-std::cout << "pop? " << '\n';
+std::cout << "pop? " << "\n>>>";
 cin>>ch;
 while(ch=='y'){
 
-    std::cout  << pop(s) << " popped. Wanna pop more? "<< '\n';
+    std::cout  << pop(s) << " popped. Wanna pop more? "<< "\n>>>";
     cin>>ch;
 };
 std::cout << "\nnow we have s.top = " <<s.top<< " and below is the stack "<<'\n';
