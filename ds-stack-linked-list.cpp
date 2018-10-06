@@ -3,14 +3,15 @@ using namespace std;
 
 typedef struct element{
   int data;
-  element *next;
+  element *next=NULL;
 } element;
 
 typedef struct stack{
-  element* null=0;
-  element* top;
+  element* list=NULL;
+  element** top=NULL;
 } stack;
 
+<<<<<<< HEAD
 
 int stack_traversal(element* ptr){ //for viewing purpose only
   std::cout << "traversal is running..." << '\n';
@@ -61,10 +62,11 @@ int main() {
       push(s,x);
       cout<<"\nmore? ";
       cin>>ch;
+=======
+int element_traversal(element* ptr){
+  while (ptr!=NULL) {
+    std::cout << ptr->data << '\n';
+    ptr= ptr->next;
+>>>>>>> a6fe77fa1b920696e230c3cd096b955859b1b3fd
   }
-  while(ch=='y');
-
-  stack_traversal(s.null);
-
-  return 0;
 }
