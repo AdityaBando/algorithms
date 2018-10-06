@@ -11,7 +11,6 @@ typedef struct stack{
   element** top=NULL;
 } stack;
 
-<<<<<<< HEAD
 
 int stack_traversal(element* ptr){ //for viewing purpose only
   std::cout << "traversal is running..." << '\n';
@@ -62,11 +61,7 @@ int main() {
       push(s,x);
       cout<<"\nmore? ";
       cin>>ch;
-=======
-int element_traversal(element* ptr){
-  while (ptr!=NULL) {
-    std::cout << ptr->data << '\n';
-    ptr= ptr->next;
->>>>>>> a6fe77fa1b920696e230c3cd096b955859b1b3fd
   }
+  
 }
+
