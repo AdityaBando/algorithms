@@ -12,7 +12,7 @@ typedef struct stack{
 } stack;
 
 
-/*int stack_traversal(element* ptr){ //for viewing purpose only
+int stack_traversal(element* ptr){ //for viewing purpose only
   std::cout << "traversal is running..." << '\n';
   while (ptr->next!=0) {
     std::cout << "running loop.." << '\n';
