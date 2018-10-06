@@ -11,6 +11,7 @@ typedef struct stack{
   element** top=NULL;
 } stack;
 
+
 int element_traversal(element* ptr){
   while (ptr!=NULL) {
     std::cout << ptr->data << '\n';
