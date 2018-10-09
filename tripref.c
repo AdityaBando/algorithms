@@ -6,41 +6,41 @@
 #define FALSE 0
 typedef int BOOL;
 
-/* program to illustrate insertion into, and deletion from, a linked list 
- using the "triple ref" technique which was rediscovered in Algol 68 some 40 
-years ago having (allegedly) been known to assembler programmers since the 
-dawn of time .... 
- 
+/* program to illustrate insertion into, and deletion from, a linked list
+ using the "triple ref" technique which was rediscovered in Algol 68 some 40
+years ago having (allegedly) been known to assembler programmers since the
+dawn of time ....
+
 Note that "tracer"  has a content type of "ref ref THING" in Algol 68, or
 `THING ** ' in C, which means that the memory location of "tracer"  itself
-is one `ref' higher i.e. "ref ref ref THING" in A68, or "THING ***" in C.  
+is one `ref' higher i.e. "ref ref ref THING" in A68, or "THING ***" in C.
 It's therefore easy to appreciate why this techniques became known as `tripleref'
 
-As its name implies, `tracer' is used to locate a place in the list. And, 
-by using casts, to singly or doubly dereference it, one can inspect the 
+As its name implies, `tracer' is used to locate a place in the list. And,
+by using casts, to singly or doubly dereference it, one can inspect the
 contents of either the current element or the next element along.
 
-The nice thing is that although the InsertThing and RemoveThing routines using 
-this technique will generally be handling something in the middle of a list 
+The nice thing is that although the InsertThing and RemoveThing routines using
+this technique will generally be handling something in the middle of a list
 but the routines are also robust against the following special cases;
- 
+
  1) inserting/deleting to/from a null list
  2) inserting/deleting to/from a single-member list
  3) inserting/deleting at the end of a list
- 4) inserting/deleting at the front of a list 
+ 4) inserting/deleting at the front of a list
 
 All of the above take place with no need for additional `special case' coding. The timely
 detection of NULL and the updating (if needed) of the pointer to the start of the list happen
 quite automatically.
 
-Use is made, in the routines below,  of the commonplace C shorthand of `while (*tracer) ' rather than 
-the more general `while (*tracer != NULL) '. But do be clear that this short-cut relies on 
-boolean values being represented as 0 and 1 and the NULL pointer as 0.   It's possible to envisage 
+Use is made, in the routines below,  of the commonplace C shorthand of `while (*tracer) ' rather than
+the more general `while (*tracer != NULL) '. But do be clear that this short-cut relies on
+boolean values being represented as 0 and 1 and the NULL pointer as 0.   It's possible to envisage
 exotic C implementations where this might not be the case.
 
 NOTE CAREFULLY: this is a tutorial example. The insertion and deletion
 routines have been deliberately constructed so as to deliver `void'. This is to
-illustrate that they do not need to deliver a formal THING * result for the purpose of 
+illustrate that they do not need to deliver a formal THING * result for the purpose of
 updating the list head (say).
 
 Instead, the content of the incoming formal parameter called `head'
@@ -57,8 +57,8 @@ result, if this is required for some reason. The `return' statements in these pr
 would then need to be replaced by `return *head' */
 
 
-typedef struct _thing 
-{ 
+typedef struct _thing
+{
 	char *item;
 	struct _thing *next;
 } THING;
@@ -74,17 +74,17 @@ THING *NewElement(char *text)
         strcpy(newp -> item, text);
         newp -> next = NULL;
         return newp;
-}  
+}
 
 
 
 //Insert a new element into a singly-linked list
-// Note -- duplicate entries are not checked for 
+// Note -- duplicate entries are not checked for
 void InsertThing(THING **head, THING *newp)
 {
 	THING **tracer = head;
 
-	while((*tracer) && 
+	while((*tracer) &&
 		  strcmp((*tracer)->item, newp -> item) < 1)
 	{
 		tracer = &(*tracer)->next;
@@ -101,8 +101,8 @@ void RemoveThing(THING **head, char *text)
 	BOOL present = FALSE;
 	THING *old;
 	THING **tracer = head;
-	
-	while((*tracer) && !(present = (strcmp(text,(*tracer)->item) == 0 )  ))
+
+	while((*tracer) && !(present = (strcmp(text,(*tracer)->item) == 0 )  ))//we don't want while to run if both texts are same(when present==1).
 		tracer = &(*tracer)->next;
 
 	if(present)
@@ -110,7 +110,7 @@ void RemoveThing(THING **head, char *text)
 		old = *tracer;
 		*tracer = (*tracer)->next;
 		free(old -> item); // free off space used by text string
-		free(old); // free up remainder of list element 
+		free(old); // free up remainder of list element
 	}
 }
 
@@ -141,6 +141,5 @@ int main(int argc, char **argv)
         RemoveThing(&start, "burgers");
         printf("\nALTERED LIST\n");
         PrintList(&start);
-                
-}                  
 
+}
