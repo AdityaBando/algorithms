@@ -1,3 +1,7 @@
+//QUEUE using array in C++
+//Circular queue using array in C++
+
+
 #include <iostream>
 using namespace std;
 const int SIZE=10;
